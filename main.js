@@ -12,7 +12,7 @@ var wechat = 'http://sc.ftqq.com/SCU9052T35a00d2837ea718a186e07060fe9ee00593a530
 var pushBear = 'https://pushbear.ftqq.com/sub'
 var sendKey = '653-d3bbdc890549ec3ca601a1f302484f7b'
 //哦莫西罗伊，也就是关注的关键词咯
-var omxly = ['凌美', '耳机', '钢笔', '鼠标', '显示器', '电脑', '手机', '电视','冰箱']
+var omxly = ['Airpods', 'AirPods', '耳机', '任天堂', 'Apple Watch', '手柄', '4K', '手机', 'VR']
 //通知过的内容的href，防止多次通知相同内容
 var notificated = []
 

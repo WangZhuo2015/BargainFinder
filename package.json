@@ -1,0 +1,11 @@
+{
+  "name": "node_modules",
+  "version": "1.0.0",
+  "dependencies": {
+    "cheerio":"*",
+    "superagent":"*",
+    "system-sleep":"*",
+    "moment":"*",
+    "express": "*"
+  }
+}

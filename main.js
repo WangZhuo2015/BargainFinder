@@ -123,17 +123,17 @@ superagent
         callback()
     })
 
-while (true) {
-    refresh({});
-    sleep(30 * 1000)
-}
-
-// var counter = 0;
 // while (true) {
-//     if (counter >= 30 ) {
-//         refresh({});
-//         counter = 0
-//     }
-//     counter += 1;
-//     sleep(20 * 1000)
+//     refresh({});
+//     sleep(30 * 1000)
 // }
+
+var counter = 0;
+while (true) {
+    if (counter >= 30 ) {
+        refresh({});
+        counter = 0
+    }
+    counter += 1;
+    sleep(20 * 1000)
+}

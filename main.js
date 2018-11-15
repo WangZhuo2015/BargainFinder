@@ -96,9 +96,11 @@ app.get('/edit', function (req, res) {
         omxly = omxly.filter(function (value) { return value !== req.query.keyword })
         omxly.push(req.query.keyword)
         res.send(omxly.toString())
+        console.log("列表更新:%s", omxly)
     }else if (req.query.operation === "remove"){
         omxly = omxly.filter(function (value) { return value !== req.query.keyword })
         res.send(omxly.toString())
+        console.log("列表更新:%s", omxly)
     }
     else res.send(omxly.toString())
 });
@@ -112,6 +114,14 @@ var server = app.listen(3210, function () {
 
 })
 
+superagent
+    .get(pushBear)
+    .query({sendkey: sendKey})
+    .query({text: "推送服务开始"})
+    .query({desp: "推送服务开始"})
+    .end(function (err, sres) {
+        callback()
+    })
 
 while (true) {
     refresh({});

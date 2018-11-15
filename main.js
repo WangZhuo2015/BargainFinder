@@ -105,35 +105,38 @@ app.get('/edit', function (req, res) {
     else res.send(omxly.toString())
 });
 
+console.log('express start')
 var server = app.listen(3210, function () {
 
     var host = server.address().address
     var port = server.address().port
 
     console.log("应用实例，访问地址为 http://%s:%s", host, port)
-
+    superagent
+        .get(pushBear)
+        .query({sendkey: sendKey})
+        .query({text: "推送服务开始"})
+        .query({desp: "推送服务开始"})
+        .end(function (err, sres) {
+            callback()
+        })
+    main()
 })
 
-superagent
-    .get(pushBear)
-    .query({sendkey: sendKey})
-    .query({text: "推送服务开始"})
-    .query({desp: "推送服务开始"})
-    .end(function (err, sres) {
-        callback()
-    })
+
 
 // while (true) {
 //     refresh({});
 //     sleep(30 * 1000)
 // }
-
-var counter = 0;
-while (true) {
-    if (counter >= 15 ) {
-        refresh({});
-        counter = 0
+function main() {
+    var counter = 0;
+    while (true) {
+        if (counter >= 15 ) {
+            refresh({});
+            counter = 0
+        }
+        counter += 1;
+        sleep(2 * 1000)
     }
-    counter += 1;
-    sleep(2 * 1000)
 }

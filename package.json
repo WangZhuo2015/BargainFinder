@@ -2,10 +2,11 @@
   "name": "node_modules",
   "version": "1.0.0",
   "dependencies": {
-    "cheerio":"*",
-    "superagent":"*",
-    "system-sleep":"*",
-    "moment":"*",
-    "express": "*"
+    "async": "^2.6.1",
+    "cheerio": "*",
+    "express": "*",
+    "moment": "*",
+    "superagent": "*",
+    "system-sleep": "*"
   }
 }

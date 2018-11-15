@@ -105,23 +105,6 @@ app.get('/edit', function (req, res) {
     else res.send(omxly.toString())
 });
 
-console.log('express start')
-var server = app.listen(3210, function () {
-
-    var host = server.address().address
-    var port = server.address().port
-
-    console.log("应用实例，访问地址为 http://%s:%s", host, port)
-    superagent
-        .get(pushBear)
-        .query({sendkey: sendKey})
-        .query({text: "推送服务开始"})
-        .query({desp: "推送服务开始"})
-        .end(function (err, sres) {
-            callback()
-        })
-    main()
-})
 
 
 
@@ -132,7 +115,7 @@ var server = app.listen(3210, function () {
 function main() {
     var counter = 0;
     while (true) {
-        if (counter >= 15 ) {
+        if (counter >= 2 ) {
             refresh({});
             counter = 0
         }
@@ -140,3 +123,37 @@ function main() {
         sleep(2 * 1000)
     }
 }
+
+
+var async = require('async');
+function test() {
+    async.parallel([
+        function (callback) {
+            console.log('express start')
+            var server = app.listen(3210, function () {
+
+                var host = server.address().address
+                var port = server.address().port
+
+                console.log("应用实例，访问地址为 http://%s:%s", host, port)
+                superagent
+                    .get(pushBear)
+                    .query({sendkey: sendKey})
+                    .query({text: "推送服务开始"})
+                    .query({desp: "推送服务开始"})
+                    .end(function (err, sres) {
+                        callback()
+                    })
+            })
+
+        },
+        function (callback) {
+            main()
+        }
+    ], function (err, results) {
+        //var rlt = results[0] + '|' + results[1] + '|' + results[2] + ......;
+        console.log(rlt)
+    });
+}
+
+test();

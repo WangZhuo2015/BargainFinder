@@ -130,7 +130,7 @@ superagent
 
 var counter = 0;
 while (true) {
-    if (counter >= 2 ) {
+    if (counter >= 15 ) {
         refresh({});
         counter = 0
     }

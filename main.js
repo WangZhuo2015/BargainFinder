@@ -29,12 +29,13 @@ function refresh(callback) {
                 var title = $element.find('h2 > a').attr('title')
                 var price = $element.find('h2 > a > em').text()
                 var img = $element.find('a > img').attr('src')
-                items.push({
-                    href: href,
-                    title: title,
-                    price: price,
-                    img:img
-                })
+                if (title !== undefined)
+                    items.push({
+                        href: href,
+                        title: title,
+                        price: price,
+                        img:img
+                    })
             })
             check(items, callback)
         })
@@ -83,7 +84,46 @@ function wechatNotification(word,item, callback) {
             callback()
         })
 }
+
+
+//express_demo.js 文件
+var express = require('express');
+var app = express();
+
+app.get('/edit', function (req, res) {
+    //if (req.param('operation') === "add"){
+    if (req.query.operation === "add"){
+        omxly = omxly.filter(function (value) { return value !== req.query.keyword })
+        omxly.push(req.query.keyword)
+        res.send(omxly.toString())
+    }else if (req.query.operation === "remove"){
+        omxly = omxly.filter(function (value) { return value !== req.query.keyword })
+        res.send(omxly.toString())
+    }
+    else res.send(omxly.toString())
+});
+
+var server = app.listen(3210, function () {
+
+    var host = server.address().address
+    var port = server.address().port
+
+    console.log("应用实例，访问地址为 http://%s:%s", host, port)
+
+})
+
+
 while (true) {
-    refresh({})
-    sleep(5 * 1000)
+    refresh({});
+    sleep(30 * 1000)
 }
+
+// var counter = 0;
+// while (true) {
+//     if (counter >= 30 ) {
+//         refresh({});
+//         counter = 0
+//     }
+//     counter += 1;
+//     sleep(20 * 1000)
+// }

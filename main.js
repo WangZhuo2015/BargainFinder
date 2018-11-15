@@ -130,10 +130,10 @@ superagent
 
 var counter = 0;
 while (true) {
-    if (counter >= 30 ) {
+    if (counter >= 2 ) {
         refresh({});
         counter = 0
     }
     counter += 1;
-    sleep(20 * 1000)
+    sleep(2 * 1000)
 }
